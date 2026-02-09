@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static data.DataGenerator.Registration.getUser;
 
 public class CreateUserTest {
@@ -118,7 +117,9 @@ public class CreateUserTest {
                 .shouldHave(Condition.exactText("Личный кабинет"))
                 .shouldBe(Condition.visible);
 
-        closeWebDriver();
+        // Убраны лишние операции с драйвером
+        Selenide.clearCookies();
+        Selenide.clearLocalStorage();
         Selenide.open("http://localhost:9999");
         var blockUser = DataGenerator.Registration.getBlockedUser(registrationUser);
 
@@ -141,7 +142,9 @@ public class CreateUserTest {
                 .shouldBe(Condition.visible, Duration.ofSeconds(5))
                 .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"));
 
-        closeWebDriver();
+        // Убраны лишние операции с драйвером
+        Selenide.clearCookies();
+        Selenide.clearLocalStorage();
         Selenide.open("http://localhost:9999");
         var activeUser = DataGenerator.Registration.getActiveUser(registrationUser);
 

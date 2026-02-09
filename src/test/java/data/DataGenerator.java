@@ -59,24 +59,14 @@ public class DataGenerator {
             return user;
         }
 
-        public static RegistrationDto getBlockedUser(RegistrationDto originalUser) {
-            var blockedUser = new RegistrationDto(
+        public static RegistrationDto getUserWithStatus(RegistrationDto originalUser, String status) {
+            var userWithStatus = new RegistrationDto(
                     originalUser.getLogin(),
                     originalUser.getPassword(),
-                    "blocked"
+                    status
             );
-            createUser(blockedUser);
-            return blockedUser;
-        }
-
-        public static RegistrationDto getActiveUser(RegistrationDto originalUser) {
-            var activeUser = new RegistrationDto(
-                    originalUser.getLogin(),
-                    originalUser.getPassword(),
-                    "active"
-            );
-            createUser(activeUser);
-            return activeUser;
+            createUser(userWithStatus);
+            return userWithStatus;
         }
     }
 
